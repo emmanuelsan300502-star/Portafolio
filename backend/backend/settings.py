@@ -14,11 +14,11 @@ from pathlib import Path
 # arriba del archivo
 import os
 
-# ...
-
-DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
-
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", SECRET_KEY)  # en Render la pondrás por env var
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-%-or!=dh7^ocxvbsayg*%)x4)f9w)wz5w%f1j_n6d__fln6_r(",
+)
+  # en Render la pondrás por env var
 
 ALLOWED_HOSTS = [
     "localhost",
