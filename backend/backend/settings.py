@@ -11,6 +11,20 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+# arriba del archivo
+import os
+
+# ...
+
+DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
+
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", SECRET_KEY)  # en Render la pondrás por env var
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "tu-backend.onrender.com",  # cámbialo por el dominio real de Render
+]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -157,3 +171,18 @@ SERVER_EMAIL = 'noreply@portafolio.dev'
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = 'tu-email@gmail.com'
 # EMAIL_HOST_PASSWORD = 'tu-app-password'  # Usa App Password de Google
+
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://192.168.1.89:5173",
+    "https://portafolio-kappa-gray-49.vercel.app/",  # dominio que te dé Vercel
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://tu-backend.onrender.com",
+    "https://portafolio-kappa-gray-49.vercel.app/",
+]
